@@ -387,6 +387,10 @@
   footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
   footer p{margin-bottom:0.5rem}
   footer .hearts{color:var(--gold);font-size:1.2em;animation:heartBeat 1.5s ease-in-out infinite}
+  footer .footer-cta{color:var(--text-dim);font-size:1rem;margin-top:0.5rem}
+  footer .footer-names{color:var(--gold);font-family:'Cinzel',serif;font-size:1.1rem}
+  /* ---------- SCREEN READER ONLY ---------- */
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   @keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
   /* ---------- ANIMATIONS ---------- */
   @keyframes revealDown{from{opacity:0;transform:translateY(-40px)}to{opacity:1;transform:none}}
@@ -596,9 +600,9 @@
     <button type="button" onclick="submitRsvp()" aria-label="Send RSVP">Send Message</button>
     <div class="rsvp-msg" id="rsvp-msg" aria-live="polite"></div>
   </div>
-  <p style="text-align:center;color:var(--text-dim);font-size:1rem;margin-top:1.5rem">We can't wait to celebrate with you!</p>
-  <p style="text-align:center;color:var(--gold);font-family:'Cinzel',serif;font-size:1.1rem">Deeksha & Dhruv</p>
-</section>
+  <p class="footer-cta">We can't wait to celebrate with you!</p>
+    <p class="footer-names">Deeksha &amp; Dhruv</p>
+  </section>
 
 <footer role="contentinfo">
   <p>Deeksha & Dhruv</p>
@@ -788,6 +792,7 @@
   // ---------- TOUCH RIPPLE ----------
   document.querySelectorAll('button, .dot, nav a, .cd-box, .event-content').forEach(el => {
     el.addEventListener('touchstart', function(e) {
+        if (e.touches.length === 0) return;
       const rect = this.getBoundingClientRect();
       const ripple = document.createElement('span');
       ripple.style.cssText = `
