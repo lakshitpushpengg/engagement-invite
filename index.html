@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Deeksha &amp; Dhruv - Engagement Invitation</title>
 <meta name="description" content="Together with our families, We invite you to celebrate our Ring Ceremony" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💍</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
@@ -19,7 +20,7 @@
     --text-dim:#b8a890;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;touch-action:manipulation}
   body{
     height:100%;
     background:radial-gradient(circle at 50% 20%, #1a1428 0%, #0a0a12 60%);
@@ -27,6 +28,7 @@
     font-family:'Cormorant Garamond',serif;
     overflow-x:hidden;
     line-height:1.6;
+    -webkit-tap-highlight-color:transparent;
   }
   /* ---------- BACKGROUND PARTICLES ---------- */
   .bg-particles{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
@@ -272,6 +274,49 @@
     .event:nth-child(even)::after{left:12px;right:auto}
     .event-content{max-width:none;text-align:left}
     .nav-links{flex-wrap:wrap;gap:1.2rem}
+  }
+  /* ---------- MOBILE-FIRST ENHANCEMENTS ---------- */
+  @media(max-width:768px){
+    nav{padding:0.9rem 1rem;gap:1.2rem}
+    nav a{font-size:0.8rem;letter-spacing:0.08em}
+    .hero{padding:6rem 1.2rem 3rem}
+    .monogram{font-size:clamp(4rem,18vw,7rem);text-shadow:0 0 30px rgba(212,175,55,0.4)}
+    .names{font-size:clamp(1.8rem,6vw,2.8rem)}
+    .subtitle{font-size:1.3rem}
+    .families{font-size:0.9rem;margin-bottom:2rem}
+    .date-reveal{padding:1.8rem 1.2rem}
+    .scratch-label{font-size:1.2rem}
+    .reveal-date{font-size:clamp(1.2rem,5vw,1.8rem)}
+    .reveal-day{font-size:0.9rem}
+    .countdown-wrap{gap:0.8rem;margin:2rem 0}
+    .cd-box{padding:1rem 0.8rem;min-width:78px}
+    .cd-box .n{font-size:1.6rem}
+    .cd-box .l{font-size:0.65rem}
+    .section{padding:3.5rem 1rem}
+    .section h2{font-size:1.5rem}
+    .section-sub{font-size:1.1rem;margin-bottom:1.5rem}
+    .story-text{font-size:1rem}
+    .slideshow{border-radius:16px}
+    .slide span{font-size:1.2rem}
+    .venue-section{font-size:1rem}
+    .venue-map{border-radius:14px}
+    .venue-map iframe{height:250px}
+    .gifts{padding:2rem 1.2rem}
+    .gifts h3{font-size:1.6rem}
+    .rsvp-wrap{padding:2rem 1.2rem;border-radius:16px}
+    .rsvp-wrap h2{font-size:1.5rem}
+    .rsvp-wrap input,.rsvp-wrap select,.rsvp-wrap textarea{padding:0.8rem 1rem;font-size:0.95rem}
+    .rsvp-wrap button{padding:0.9rem;font-size:0.9rem}
+    footer{padding:3rem 1rem}
+  }
+  /* ---------- ANDROID SAFE AREA ---------- */
+  @supports (padding: max(0px)){
+    nav{padding-top:max(1.2rem, env(safe-area-inset-top))}
+    .hero{padding-top:calc(4rem + env(safe-area-inset-top))}
+  }
+  /* ---------- IPHONE NOTCH ---------- */
+  @supports (padding: max(0px)) and (max-width:444px){
+    .hero{padding-top:calc(6rem + env(safe-area-inset-top))}
   }
 </style>
 </head>
