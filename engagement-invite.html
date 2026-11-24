@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Royal Legacy Engagement Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#d4af37;--deep:#0a0a14;--rose:#f5e6d3;--cream:#faf6ee}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--deep);color:var(--cream);font-family:'Cormorant Garamond',serif;overflow-x:hidden}
+  body{background:radial-gradient(ellipse at top,#1a1430 0%,#0a0a14 60%)}
+  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 30%,rgba(212,175,55,.18),transparent 60%);pointer-events:none}
+  .monogram{font-family:'Great Vibes',cursive;font-size:clamp(3rem,9vw,6rem);color:var(--gold);text-shadow:0 0 30px rgba(212,175,55,.5);animation:fadeUp 1.6s ease}
+  .names{font-family:'Cinzel',serif;font-size:clamp(1.6rem,4vw,3rem);letter-spacing:.15em;margin:.5rem 0;color:var(--cream)}
+  .amp{color:var(--gold);font-family:'Great Vibes',cursive;font-size:1.4em}
+  .subtitle{font-size:1.2rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:1rem;opacity:.9}
+  .date{margin-top:2rem;font-size:1.3rem;letter-spacing:.2em}
+  .divider{width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:2rem auto}
+  .countdown{display:flex;gap:1.5rem;margin-top:2rem;flex-wrap:wrap;justify-content:center}
+  .cd{background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.4);padding:1rem 1.2rem;border-radius:12px;min-width:80px;backdrop-filter:blur(4px)}
+  .cd .n{font-family:'Cinzel',serif;font-size:2.2rem;color:var(--gold);display:block}
+  .cd .l{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+  .section{padding:5rem 1.5rem;max-width:900px;margin:0 auto;text-align:center}
+  .section h2{font-family:'Cinzel',serif;color:var(--gold);font-size:2rem;letter-spacing:.15em;margin-bottom:1.5rem}
+  .section p{font-size:1.2rem;line-height:1.8;opacity:.9}
+  .timeline{display:grid;gap:1.5rem;margin-top:2rem}
+  .event{border-left:2px solid var(--gold);padding:1rem 1.5rem;text-align:left;background:rgba(255,255,255,.03);border-radius:0 12px 12px 0}
+  .event h3{font-family:'Cinzel',serif;color:var(--gold);font-size:1.2rem;margin-bottom:.3rem}
+  .event .meta{font-size:.95rem;opacity:.75;margin-bottom:.5rem}
+  .btn{display:inline-block;margin-top:2rem;padding:.9rem 2.2rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;border-radius:999px;font-family:'Cinzel',serif;letter-spacing:.15em;transition:.3s;background:transparent;cursor:pointer}
+  .btn:hover{background:var(--gold);color:var(--deep)}
+  .rsvp{background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.3);border-radius:20px;padding:2.5rem 1.5rem;max-width:600px;margin:0 auto}
+  .rsvp input,.rsvp select{width:100%;padding:.8rem 1rem;margin:.5rem 0;background:rgba(0,0,0,.3);border:1px solid rgba(212,175,55,.3);color:var(--cream);border-radius:8px;font-family:inherit;font-size:1rem}
+  .rsvp button{width:100%;margin-top:1rem}
+  .footer{padding:3rem 1rem;text-align:center;opacity:.6;font-size:.9rem}
+  .petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+  .petal{position:absolute;top:-10%;color:rgba(212,175,55,.6);font-size:1.2rem;animation:fall linear infinite}
+  @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+  .sparkle{position:fixed;pointer-events:none;width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold);animation:spark 1.5s ease-out forwards}
+  @keyframes spark{to{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
+  .map{margin-top:2rem;border-radius:16px;overflow:hidden;border:1px solid rgba(212,175,55,.3)}
+  iframe{width:100%;height:300px;border:0}
+</style>
+</head>
+<body>
+<div class="petals" id="petals"></div>
+<section class="hero">
+  <div class="monogram">R &amp; A</div>
+  <div class="names">Rohan <span class="amp">&amp;</span> Ananya</div>
+  <div class="subtitle">Engagement Celebration</div>
+  <div class="divider"></div>
+  <div class="date">Saturday, 14 February 2027 &bull; 6:00 PM</div>
+  <div class="countdown" id="cd">
+    <div class="cd"><span class="n" id="d">--</span><span class="l">Days</span></div>
+    <div class="cd"><span class="n" id="h">--</span><span class="l">Hours</span></div>
+    <div class="cd"><span class="n" id="m">--</span><span class="l">Mins</span></div>
+    <div class="cd"><span class="n" id="s">--</span><span class="l">Secs</span></div>
+  </div>
+  <a class="btn" href="#rsvp">RSVP</a>
+</section>
+
+<section class="section">
+  <h2>Our Story</h2>
+  <p>Two hearts, one beautiful beginning. Join us as we celebrate the promise of forever — an evening of love, laughter, and the people we cherish most.</p>
+  <div class="divider"></div>
+  <h2>Program</h2>
+  <div class="timeline">
+    <div class="event"><h3>Welcome &amp; High Tea</h3><div class="meta">6:00 PM &bull; Grand Ballroom</div><p>Arrival, welcome drinks and mingling with family and friends.</p></div>
+    <div class="event"><h3>Ring Ceremony</h3><div class="meta">7:30 PM &bull; Main Stage</div><p>The exchange of rings and blessings.</p></div>
+    <div class="event"><h3>Dinner &amp; Celebration</h3><div class="meta">8:30 PM &bull; Banquet Hall</div><p>A feast followed by music and dance.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Venue</h2>
+  <p>The Royal Orchid, MG Road, Bengaluru</p>
+  <div class="map">
+    <iframe src="https://www.google.com/maps?q=MG+Road+Bengaluru&output=embed" loading="lazy"></iframe>
+  </div>
+</section>
+
+<section class="section" id="rsvp">
+  <h2>RSVP</h2>
+  <div class="rsvp">
+    <input type="text" placeholder="Your Name" id="name">
+    <input type="number" placeholder="Number of Guests" id="guests" min="1" value="1">
+    <select id="food">
+      <option>Veg</option><option>Non-Veg</option><option>No Preference</option>
+    </select>
+    <button class="btn" onclick="submitRsvp()">Confirm Attendance</button>
+    <p id="msg" style="margin-top:1rem;color:var(--gold)"></p>
+  </div>
+</section>
+
+<div class="footer">With love &bull; Rohan &amp; Ananya &bull; #RoyalLegacy</div>
+
+<script>
+  const target = new Date('2027-02-14T18:00:00+05:30').getTime();
+  function tick(){
+    const diff = target - Date.now();
+    if(diff<=0){ document.getElementById('cd').innerHTML='<span style="color:var(--gold)">The day is here!</span>'; return; }
+    const d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000), m=Math.floor(diff%3600000/60000), s=Math.floor(diff%60000/1000);
+    document.getElementById('d').textContent=d; document.getElementById('h').textContent=h;
+    document.getElementById('m').textContent=m; document.getElementById('s').textContent=s;
+  }
+  setInterval(tick,1000); tick();
+  function submitRsvp(){ const n=document.getElementById('name').value; document.getElementById('msg').textContent = n? 'Thank you, '+n+'! Your RSVP has been received.' : 'Please enter your name.'; }
+  // petals
+  const petals=document.getElementById('petals');
+  for(let i=0;i<30;i++){const p=document.createElement('div');p.className='petal';p.textContent='✦';p.style.left=Math.random()*100+'%';p.style.animationDuration=(6+Math.random()*8)+'s';p.style.animationDelay=Math.random()*8+'s';p.style.fontSize=(.6+Math.random()*1)+'rem';petals.appendChild(p);}
+  // sparkles on click
+  document.addEventListener('click',e=>{for(let i=0;i<8;i++){const sp=document.createElement('div');sp.className='sparkle';sp.style.left=e.clientX+'px';sp.style.top=e.clientY+'px';const a=Math.random()*Math.PI*2,r=40+Math.random()*40;sp.style.setProperty('--dx',Math.cos(a)*r+'px');sp.style.setProperty('--dy',Math.sin(a)*r+'px');document.body.appendChild(sp);setTimeout(()=>sp.remove(),1500);}});
+</script>
+</body>
+</html>
